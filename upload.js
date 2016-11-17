@@ -3,11 +3,11 @@ var glob = require('glob');
 var fs = require('fs');
 
 //需要填写你的 Access Key 和 Secret Key
-qiniu.conf.ACCESS_KEY = '1o1cyg_43qoexCVkFcBHxekAl6z0EaIDRCnUOOM_';
-qiniu.conf.SECRET_KEY = 'm8wxAhGwZzCni-P6-kr7JD5niOomC3ZB76_mRm14';
+qiniu.conf.ACCESS_KEY = '';
+qiniu.conf.SECRET_KEY = '';
 
 //要上传的空间 改为你所要的
-var bucket = 'pandateacher';
+var bucket = '';
 
 //需要上传的目录和文件
 var uploadDir = './public/**/*.{js,css,eot,svg,ttf,woff,png,jpg,jpeg}';
