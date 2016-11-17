@@ -8,16 +8,18 @@
 ```js
 
 --- src
-	|--- apis
-	|--- components
+	|--- apis ( 为ajax封装的一层promise )
+	|--- components 
 	|--- css
 	|--- fonts
 	|--- images
 	|--- js
-	|--- mock
+	|--- mock （ 前端mock服务 ）
 	|--- sass
 	|--- views
 ```
+
+
 
 npm run dev 前端开发用
 
