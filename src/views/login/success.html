@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="hotcss" content="max-width=640">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="screen-orientation" content="portrait">
+    <title>熊猫老师</title>
+    <link rel="stylesheet" type="text/css" href="../../css/login/success.css?rev=@@hash"/>
+</head>
+<body>
+<notice></notice>
+<script type="vue/template" id="noticeTpl">
+    <div class="noticeBox screen">
+        <div class="box bgOrange">
+            <header >
+                <h3 v-text="data.title"></h3>
+                <p v-text="data.desc"></p>
+            </header>
+            <article class="content">
+                <section>
+                    <p class="iconWaring1">&#xe61e;</p>
+                    <p class="iconWaring2">
+                        <span class="iconspan1">&#xe61e;</span>
+                        <span class="iconspan2" :class="{'icon-on': iconOn}">&#xe61e;</span>
+                    </p>
+                    <h3 v-text="data.info"></h3>
+                </section>
+            </article>
+            <article class="buttons">
+                <ul>
+                    <li class="bold use" @click="closeWindows"><a :href="data.href">关闭</a></li>
+                </ul>
+            </article>
+        </div>
+    </div>
+</script>
+
+<script src="../../js/lib/jweixin-1.0.0.js"></script>
+<script>
+    var $data = <?php echo json_encode($data);?>;
+    console.log($data);
+    wx.config(<?php echo $js_config; ?>);
+    wx.ready(function () {
+        wx.hideAllNonBaseMenuItem();
+    });
+</script>
+<!-- build:js -->
+<script src="../../mock/login/success.js"></script>
+<!-- endbuild -->
+
+<script src="../../js/lib/vue.min.js"></script>
+<script src="../../js/login/success.js"></script>
+<div style="display: none">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1258723222&web_id=1258723222" language="JavaScript"></script>
+</div>
+</body>
+</html>

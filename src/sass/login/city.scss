@@ -1,0 +1,270 @@
+@import "../reset";
+@import "../iconfont";
+@import "../variable";
+@import "../normal/multipicker";
+$color : #ff8f4b;
+
+body {
+  background: #fff;
+}
+
+.noticeBox {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.07);
+  z-index: 99;
+  .box {
+    width:100%;
+    height:100%;
+    //width: 290px;
+    //margin: 0 auto;
+    background: #fff;
+    border-radius: 2px;
+    box-shadow: 1.877px -11.852px 81px 0 rgba(0, 0, 0, 0.09);
+    position: relative;
+    top: 50%;
+    transform: translate3d(0, -50%, 0);
+    header {
+      text-align: center;
+      padding: 20px 20px 30px 20px;
+      color: #111;
+      border-radius: 2px 2px 0 0;
+      background-position: center top;
+      background-size: cover;
+      h3 {
+        font-size: 18px;
+        font-weight: 800;
+        text-shadow: 0 0 23px rgba(0, 0, 0, 0.26);
+        margin: 0 0 -10px 0;
+      }
+      p {
+        margin: 15px 0 0;
+        opacity: .6;
+      }
+    }
+    .bgWhite {
+      background-image: url("../../images/notice/bg_white.jpg?ver=3");
+    }
+    .bgOrange {
+      background-image: url("../../images/notice/bg_orange.jpg?ver=3");
+    }
+    .bgGreenLight {
+      background-image: url("../../images/notice/bg_greenLight.jpg?ver=3");
+    }
+    .bgRed {
+      background-image: url("../../images/notice/bg_red.jpg?ver=3");
+    }
+    .bgOrange, .bgBlue, .bgGreenLight, .bgRed {
+      color: #fff;
+      p {
+        opacity: .85;
+      }
+    }
+    .buttons {
+      margin: -15px 0 0;
+      position: relative;
+      z-index: 2;
+      transform: translate3d(0, 15px, 0);
+      user-select: none;
+      ul {
+        text-align: center;
+        letter-spacing: -3px;
+        li {
+          display: inline-block;
+          letter-spacing: 0;
+          margin: 0 8px 0 0;
+          a {
+            position: relative;
+            user-select: none;
+            display: block;
+            padding: 5px 55px 5px 35px;
+            color: #fff;
+            line-height: 24px;
+            background: rgb(255, 143, 75);
+            box-shadow: 0px 11px 81px 0px rgba(0, 0, 0, 0.4);
+            font-weight: bold;
+            border-radius: 50px;
+            &:after {
+              position: absolute;
+              content: '\e620';
+              top: 4px;
+              font-family: 'iconfont';
+              font-size: 14px;
+              padding: 0 0 0 10px;
+            }
+            &:active {
+              background: #FC843C;
+              color: #fff;
+              transition: background .3s .1s ease;
+            }
+          }
+        }
+        .bold {
+          font-weight: bold;
+        }
+        .noBg {
+          a {
+            background: #e6e6e6;
+            box-shadow: 0 11px 81px 0 rgba(0, 0, 0, 0.1);
+            color: #888;
+          }
+        }
+        .arrow {
+          a {
+            padding: 5px 30px;
+            &:after {
+              content: "\e620";
+              font-family: iconfont;
+              margin: 0 -5px 0 5px;
+              font-weight: 100;
+              display: inline-block;
+            }
+          }
+        }
+      }
+    }
+    .content {
+      margin: 0 0 20px 0;
+      overflow-x: hidden;
+      width: 100%;
+      border-top: 10px solid #fff;
+      h3 {
+        text-align: center;
+        padding: 20px 10px;
+        color: #444;
+        line-height: 1.4;
+        font-size: 19px;
+      }
+      .pages {
+        position: relative;
+        padding: 0 15px;
+        letter-spacing: -3px;
+        transition: -webkit-transform .23s ease;
+        transform: translate3d(0, 0, 0);
+        z-index: 2;
+        p {
+          margin: 0 0 12px;
+          letter-spacing: normal;
+          font-size: 14px;
+          font-weight: 600;
+          color: #444;
+        }
+        h4 {
+          font-size: 12px;
+          font-weight: 400;
+          letter-spacing: normal;
+          margin: 0 0 10px;
+          color: #555;
+          b {
+            color: $color;
+            font-weight: 500;
+            &:before {
+              display: inline-block;
+              content: '\e63f';
+              font-family: 'iconfont';
+              color: $color;
+              font-size: 13px;
+              padding: 0 5px 0 0;
+            }
+          }
+        }
+        h5 {
+          font-size: 12px;
+          font-weight: 300;
+          letter-spacing: normal;
+          margin: 10px 0 20px 0;
+          color: #aaa;
+        }
+      }
+      .option {
+        position: relative;
+        margin: 0 0 10px;
+        .value {
+          border: 1px solid #eee;
+          padding: 0 10px;
+          border-radius: 2px;
+          position: relative;
+          line-height: 33px;
+          letter-spacing: normal;
+          input {
+            line-height: 33px;
+            border: none;
+          }
+          &:after {
+            content: "\e618";
+            font-family: iconfont;
+            position: absolute;
+            right: 10px;
+            line-height: 35px;
+            top: 0;
+            font-size: 10px;
+            color: #ddd;
+          }
+        }
+        select {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          opacity: 0;
+        }
+      }
+    }
+    &:after {
+      content: "";
+      border-radius: 0 0 2px 2px;
+      background-image: -webkit-linear-gradient(90deg, rgba(0, 0, 0, 0.04) 0%, rgba(255, 255, 255, 0) 100%);
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 80px;
+      z-index: 1;
+    }
+  }
+
+}
+.hot-city {
+  font-size:12px;
+  span {
+    color: $color;
+    &:before {
+      font-family: "iconfont";
+      content: '\e63f';
+      color: inherit;
+    }
+  }
+}
+.city-list {
+  margin:0 0 15px;
+  li {
+    letter-spacing: normal;
+    position: relative;
+    display: inline-block;
+    margin: 0 0 10px;
+    padding: 4px 15px 4px 15px;
+    text-align: center;
+    color: #555;
+    &.hover {
+      background: $color;
+      color: #fff;
+      border-radius: 50px;
+    }
+    /*&:hover::after {
+      font-family: "iconfont";
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      content: '\e61d';
+      border-radius: 50%;
+      background: #ff8f4b;
+      color: #fff;
+      margin: 0 0 0 5px;
+      font-size: 12px;
+    }*/
+  }
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no" />
+    <title>熊猫书院报到</title>
+    <link rel="stylesheet" type="text/css" href="../../css/login/city.css?rev=@@hash"/>
+    <script src="../../js/lib/jweixin-1.0.0.js"></script>
+    <script>
+        var $data = {$data};
+        console.log($data);
+        var $signature = <?php echo json_encode($signature);?>;
+        console.log($signature);
+        wx.config(<?php echo $js_config; ?>);
+        wx.ready(function () {
+            wx.hideAllNonBaseMenuItem();
+        });
+    </script>
+    <!-- build:js -->
+    <script src="../../mock/login/city.js"></script>
+    <!-- endbuild -->
+    <script src="../../js/lib/zepto.1.6.js"></script>
+    <script src="../../js/lib/vue.min.js"></script>
+    <script src="https://static.pandateacher.com/pandacity.js"></script>
+    <script src="../../js/multiPicker.js"></script>
+</head>
+<body>
+<div id="noticeBox" class="noticeBox">
+    <div class="box">
+        <header :class="{'bgWhite': status == 0, 'bgRed' : status == 1}">
+            <h3 id="title" v-text="title"></h3>
+        </header>
+        <article class="content" v-if="status == 1">
+            <h3 v-text="'已成功加入' + choice + '，请等待书院31号推送的入学小测及分班通知'"></h3>
+        </article>
+        <article class="content" v-if="status == 0">
+            <div class="pages">
+                <p v-text="desc[0]"></p>
+               <!-- <h4><b>热门城市</b> / HOT CITIES</h4>
+                <ul class="city-list">
+                    <li v-for="el in hot" v-text="el.value" @click="choose(el,$index)" :class="{'hover' : hover == $index}"></li>
+                </ul>-->
+            </div>
+            <div class="pages">
+                <p v-text="desc[1]"></p>
+                <section class="option">
+                    <div class="value" id="multi-picker-input" v-text="result"></div>
+                </section>
+                <h5 v-text="desc[2]"></h5>
+            </div>
+        </article>
+        <article class="buttons">
+            <ul>
+                <li class="bold" id="next" @click="next" :class="{'noBg': nextType == 0}"><a v-text="nextTxt"></a></li>
+            </ul>
+        </article>
+        <div id="targetDiv"></div>
+    </div>
+</div>
+<script src="../../js/login/city.js?rev=@@hash"></script>
+<div style="display: none;"><script src="https://s4.cnzz.com/z_stat.php?id=1257573903&web_id=1257573903" language="JavaScript"></script></div>
+</body>
+</html>
