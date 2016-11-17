@@ -119,9 +119,8 @@ gulp.task('views', function () {
 });
 gulp.task('mock', function () {
 	return gulp.src(src.mock)
-		.pipe(gulp.dest(dist.mock))
+	.pipe(gulp.dest(dist.mock))
 });
-
 
 gulp.task('sass', function () {
 	return gulp.src(src.sass)
@@ -258,16 +257,14 @@ gulp.task('views:build', function () {
 	.pipe(revCollector({
 		replaceReved: true
 	}))
-	.pipe(ifElse(BUILD === 'PUBLIC', function() {
-		return htmlreplace({
-			js: {
-				src: '',
-				tpl: ''
-			}, dev: {
-				src: '',
-				tpl: '<script>var DEV = false;</script>'
-			}
-		})
+	.pipe(htmlreplace({
+		js: {
+			src: '',
+			tpl: ''
+		}, dev: {
+			src: '',
+			tpl: '<script>var DEV = false;</script>'
+		}
 	}))
 	.pipe(replace('../../', ''+ CDN +'/')) // 替换html页面静态资源地址
 	.pipe(replace('../', ''+ CDN +'/')) // 替换html页面静态资源地址
@@ -276,13 +273,17 @@ gulp.task('views:build', function () {
 gulp.task('build:dev', function () { // 和线上配置一样，除了不压缩js
 	webpackConfig.module.preLoaders = [];
 	isCDN = true;
-	BUILD = 'PUBLIC';
 	
 	webpackConfig.plugins.push(new webpack.DefinePlugin({
 		NODE_ENV: JSON.stringify(process.env.NODE_ENV) || 'production'
 	}));
-	build(['clean','sass','js:build', 'views:build', 'images', 'fonts'],function() {
+	runSequence('clean','sass','js:build', 'ugjs:build','views:build', 'images', 'fonts',function() {
+		// 上传静态资源文件到CDN
 		del(['./src/tmp'])
+		exec('node upload.js', function (err, output) {
+			if(err) console.log(err);
+			console.log(output);
+		});
 	});
 });
 gulp.task('build', function () { // 发布
@@ -292,8 +293,13 @@ gulp.task('build', function () { // 发布
 	webpackConfig.plugins.push(new webpack.DefinePlugin({
 		NODE_ENV: JSON.stringify(process.env.NODE_ENV) || 'production'
 	}));
-	build(['clean','sass', 'css:build','js:build', 'ugjs:build', 'views:build', 'images', 'fonts'],function() {
+	runSequence('clean','sass', 'css:build','js:build', 'ugjs:build', 'views:build', 'images', 'fonts',function() {
+		// 上传静态资源文件到CDN
 		del(['./src/tmp'])
+		exec('node upload.js', function (err, output) {
+			if(err) console.log(err);
+			console.log(output);
+		});
 	});
 });
 gulp.task('css:build', function () {
@@ -311,16 +317,7 @@ gulp.task('css:build', function () {
 	.pipe(gulp.dest(dist.css))
 	
 });
-function build(tasks,cb) {
-	runSequence(tasks,function() {
-		// 上传静态资源文件到CDN
-		cb && cb();
-		exec('node upload.js', function (err, output) {
-			if(err) console.log(err);
-			console.log(output);
-		});
-	});
-}
+
 gulp.task('clean', function () {
 	del([
 		'public/**/*'
