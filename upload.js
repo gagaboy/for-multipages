@@ -12,6 +12,10 @@ var bucket = '';
 //需要上传的目录和文件
 var uploadDir = './public/**/*.{js,css,eot,svg,ttf,woff,png,jpg,jpeg}';
 
+// 文件全局存储，错误时直接重复上传该文件
+var globalFiles = [];
+var globalIndex = 0;
+
 //读取所需文件并上传
 glob(uploadDir, function (err,file) {
 
@@ -20,6 +24,12 @@ glob(uploadDir, function (err,file) {
         var filePath = f;
         var key = f.substring(9);
         var token = uptoken(bucket, key);
+		globalFiles.push({
+			token : token,
+			key : key,
+			filePath : filePath
+		});
+		
         uploadFile(token, key, filePath);
     });
 });
@@ -37,9 +47,13 @@ function uploadFile(uptoken, key, localFile) {
         if(!err) {
             // 上传成功， 处理返回值
             console.log(ret.hash, ret.key);
-        } else {
+			globalIndex++
+	
+		} else {
             // 上传失败， 处理返回代码
             console.log(err);
+			var f = globalFiles[globalIndex];
+			uploadFile(f.token,f.key,f.filePath)
         }
     });
 }

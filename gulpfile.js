@@ -25,7 +25,9 @@ const sass = require('gulp-sass');
 const sourcemaps = require('gulp-sourcemaps');
 const revCollector = require('gulp-rev-collector');
 const exec = require('child_process').exec;
-const CDN = '//static.pandateacher.com';
+const CDN = '//baseqcdn.pandateacher.com'; // 腾讯云
+// const CDN = '//static.pandateacher.com'; // 七牛的
+
 var webpackConfig = {
 	resolve: {
 		root: path.join(__dirname, 'node_modules'),
