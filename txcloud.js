@@ -32,7 +32,7 @@ glob(uploadDir, function (err,file) {
 
 //上传文件
 function upload(filepath,bucketpath) {
-	qcloud.cos.upload(filepath, bucket, bucketpath,'cdn',1, function(ret){
+	qcloud.cos.upload(filepath, bucket, bucketpath,'cdn',0, function(ret){
 		if (ret.code != 0) {
 			
 			console.log(ret);
